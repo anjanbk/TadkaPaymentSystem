@@ -1,0 +1,17 @@
+body
+{
+	background-image:url('hearts.jpg');
+	background-size:cover;
+	background-repeat:no-repeat;
+	background-attachment:fixed;
+}
+
+#tadkaContent {
+	position:absolute;
+	width:300px;
+     	height:300px;
+	z-index:15;
+	left:50%;
+	/*margin:-150px 0 0 -150px;*/
+	margin:0 0 0 -150px;
+}

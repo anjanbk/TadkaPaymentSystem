@@ -1,0 +1,16 @@
+<html>
+
+<body>
+
+	{% if timeslots %}
+		{% for timeslot in timeslots %}
+			<li> Day: {{ timeslot.day }}, Time: {{ timeslot.time}} </li>	
+		{% endfor %}
+	{% else %}
+		<p> D'oh! There are currently no timeslots. </p>
+	{% endif %}
+	
+
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Ishq Portal</title>
+		<!-- Bootstrap -->
+		<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="../media/form_ui.css" rel="stylesheet" media="screen">
+	</head>
+	<body background="../media/hearts.jpg">
+		<div id="tadkaContent">
+			<form action="javascript:beginTransaction()" class="form-horizontal">
+				<h3> You </h3>
+				<div class="control-group">
+					<label class="control-label" for="inputNameFrom">Name</label>
+					<div class="controls">
+						<input type="text" id="inputNameFrom" placeholder="Name">
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="inputGenderFrom">Gender</label>
+					<div class="controls">
+						<select id="inputGenderFrom">
+							<option>Male</option>
+							<option>Female</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="inputPhoneFrom">Phone Number</label>
+					<div class="controls">
+						<input type="text" id="inputPhoneFrom" placeholder="e.g. 555-555-5555">
+					</div>
+				</div>
+
+				<h3> Your Beloved </h3>
+
+				<div class="control-group">
+					<label class="control-label" for="inputNameTo">Name</label>
+					<div class="controls">
+						<input type="text" id="inputNameTo" placeholder="Name">
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="inputGenderTo">Gender</label>
+					<div class="controls">
+						<select id="inputGenderTo">
+							<option>Male</option>
+							<option>Female</option>
+						</select>
+					</div>
+				</div>
+
+				<h3> Time </h3>
+				<div class="controls">
+					<p> TODO: Time slot grid select tool </p>
+					<label class="radio">
+					<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+					Option one is this and that—be sure to include why it's great
+					</label>
+					<label class="radio">
+					<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+					Option two can be something else and selecting it will deselect option one
+					</label>
+				</div>
+
+				<h3> Location of Singing Gram Delivery </h3>
+				<div class="control-group">
+					<div class="controls">
+						<strong> NOTE: ONLY central campus and non-residential locations. Any other locations will not be entertained and you will have spent a dollar for nothing! </strong>
+						<br />
+						<strong> Be AS SPECIFIC AS POSSIBLE (ex. "CULC 4th floor closest to 401". This will help us find your friend! </strong>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inputLocation">Location</label>
+					<div class="controls">
+						<input type="text" id="inputLocation" placeholder="e.g. Student Center Food Court">
+					</div>
+				</div>
+
+				<h3> Song </h3>
+				<div class="control-group">
+					<label class="control-label" for="inputSong">Song</label>
+					<div class="controls">
+						<input type="text" id="inputSong" placeholder="e.g. Just The Way You Are - Bruno Mars">
+					</div>
+				</div>
+
+				<div class="control-group">
+					<div class="controls">
+						<!--<button type="submit" class="btn">Submit</button>-->
+						<input type="image" src="https://checkout.google.com/buttons/buy.gif?merchant_id=972820744187740&amp;w=117&amp;h=48&amp;style=white&amp;variant=text&amp;loc=en_US" />
+					</div>
+				</div>
+			</form>
+		</div>
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+
+
+		<script type="text/javascript">
+			/*
+				Begins the steps that constitute a transaction.
+				1) Processing payment via Google Checkout's secure system
+				2) Writing the form fields to a spreadsheet and (if there's time) write to the database.
+			*/
+			function beginTransaction() {
+				$.post( "https://972820744187740:JwLNM-uN6PUG1UlITqqZxw@checkout.google.com/api/checkout/v2/request/972820744187740/diagnose",
+					"Hello",
+					alert("Success"),
+					"json");
+			}
+		</script>
+
+	</body>
+</html>
