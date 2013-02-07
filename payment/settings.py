@@ -1,4 +1,7 @@
 # Django settings for payment project.
+import os.path
+
+PWD = os.path.dirname(os.path.realpath(__file__))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -106,7 +109,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    "/home/anjan/Code/TadkaPaymentSystem/templates/"
+    os.path.join(PWD, '../templates')
 )
 
 INSTALLED_APPS = (

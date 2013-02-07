@@ -4,14 +4,32 @@ body
 	background-size:cover;
 	background-repeat:no-repeat;
 	background-attachment:fixed;
+	text-align:center;
 }
 
 #tadkaContent {
+	margin: 0 auto;
+	text-align: left;
+	width: 800px;
+	/*
 	position:absolute;
 	width:300px;
      	height:300px;
 	z-index:15;
 	left:50%;
-	/*margin:-150px 0 0 -150px;*/
 	margin:0 0 0 -150px;
+	*/
+}
+
+#timeSlotCell {
+	text-align:center;
+	background-color:black;
+}
+
+.available {
+	background-color:green;
+}
+
+.unavailable {
+	background-color:gray;
 }
