@@ -2,4 +2,4 @@
 *.pyc
 db/*
 site_media/memberpictures
-
+venv
