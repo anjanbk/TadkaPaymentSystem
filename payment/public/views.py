@@ -32,6 +32,7 @@ def songhelp(request):
 
 def signup(request):
 	csrfContext = RequestContext(request)
+	production = True
 	
 	sName = request.POST['inputNameFrom']
 	sGender = request.POST['inputGenderFrom']
@@ -41,27 +42,57 @@ def signup(request):
 	location = request.POST['inputLocation']
 	song = request.POST['inputSong']
 
+	try:
+		tip = float(request.POST['inputTip'])
+	except ValueError:
+		tip = 0.0
+
+	amount = 1.34
+
 	if IsNull(sName) or IsNull(sGender) or IsNull(sPhone) or IsNull(rName) or IsNull(rGender) or IsNull(location) or IsNull(song):
 		context = RequestContext(request, {})
 		template = loader.get_template('error.html')
 		return HttpResponse(template.render(context))
 	else:
 		# Google Checkout redirect handling
-		username = '359393532142800'
-		password = 'rCY7EiDRDEFcMf6wlAVnBg'
-		url = 'https://sandbox.google.com/checkout/api/checkout/v2/merchantCheckoutForm/Merchant/359393532142800'
-		data = {'_type':'checkout-shopping-cart',
+		sandboxusername = '359393532142800'
+		sandboxpassword = 'rCY7EiDRDEFcMf6wlAVnBg'
+
+		productionusername = '972820744187740'
+		productionpassword = 'JwLNM-uN6PUG1UlITqqZxw'
+
+		sandboxurl = 'https://sandbox.google.com/checkout/api/checkout/v2/merchantCheckoutForm/Merchant/359393532142800'
+		productionurl = 'https://checkout.google.com/api/checkout/v2/merchantCheckoutForm/Merchant/972820744187740'
+
+
+		if production:
+			url = productionurl
+			username = productionusername
+			password = productionpassword
+		else:
+			url = sandboxurl
+			username = sandboxusername
+			password = sandboxpassword
+		
+		if tip > 0:
+			amount = 1.34 + tip
+		
+		payload = {'_type':'checkout-shopping-cart',
 			'item_name_1':'Singing Gram',
-			'item_description_1':'Taal Tadka Valentine&amp;#39;s Day Singing Gram',
+			'item_description_1':'Taal Tadka Valentine\'s Day Singing Gram',
 			'item_quantity_1':'1',
-			'item_price_1':'1.34',
+			'shopping-cart.items.item-1.digital-content.display-disposition':'OPTIMISTIC',
+			'shopping-cart.items.item-1.digital-content.description':'Once we\'ve processed your order, your we will find embarrass the recipient for you. Happy Valentine\'s Day!',
+			'item_price_1':str(amount),
 			'item_currency_1':'USD',
 			'_charset_':'utf-8'}
 
 		import requests
-		resp = requests.post(url, data, auth=(username,password))
+		resp = requests.post(url, payload, auth=(username,password))
+		#resp = requests.post(url,data = json.dumps(payload),headers=headers)
 
 		content = resp.content
+
 		index = content.find('redirect-url')
 		if index is not -1:
 			index += len('redirect-url') + 1
